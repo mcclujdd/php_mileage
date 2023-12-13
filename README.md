@@ -1,4 +1,3 @@
-# README
 Project established: 11-26-2023
 
 Creator: Jason McClurg
