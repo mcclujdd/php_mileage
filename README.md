@@ -1,7 +1,9 @@
 # README
 Project established: 11-26-2023
+
 Creator: Jason McClurg
-Purpose: Web based mileage app as a useful portfolio project.
+
+Purpose: Web based mileage app 
 
 ### Network
 
