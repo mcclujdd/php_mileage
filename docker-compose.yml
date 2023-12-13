@@ -1,0 +1,17 @@
+services:
+  php_mileage_app:
+    image: php:8.1-apache
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: ./src
+        target: /var/www/html
+    networks:
+      - frontend
+
+networks:
+  frontend:
+
