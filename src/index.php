@@ -1,5 +1,6 @@
 <?php
 include_once './locations.php';
+include_once './_db.php';
 ?>
 
 <html>
