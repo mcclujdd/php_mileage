@@ -1,10 +1,11 @@
 <?php
 
-$host = "172.17.0.1";
+$host = "10.5.0.3";
 $user = "root";
-$pass = ''; //$pass = $_ENV['db_pass'];
-$db = 'mileage';
+$pass = $_ENV['MYSQL_ROOT_PASSWORD']; 
+$db = $_ENV['MYSQL_DATABASE'];
+$conn = mysqli_connect($host, $user, $pass, $db,);
 
-if (!$conn = mysqli_connect($host, $user, $pass)) {
-    die("Bad connect $host");
-}
+//if (!$conn = mysqli_connect($host, $user, $pass, $db)) {
+    //die("Bad connect $host");
+//}

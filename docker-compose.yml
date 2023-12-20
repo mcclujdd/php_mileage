@@ -9,12 +9,16 @@ services:
       - 80
     ports:
       - "8080:80"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS} #pass is in .env file
+      MYSQL_DATABASE: 'db'
     volumes:
       - type: bind #allows code changes without restarting the server everytime
         source: ./src
         target: /var/www/html
     networks:
-      - app
+      app:
+        ipv4_address: 10.5.0.2
 
   db:
     container_name: db
@@ -30,7 +34,8 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-        - app
+      app:
+        ipv4_address: 10.5.0.3
 
   phpmyadmin:
     container_name: pma
@@ -45,14 +50,17 @@ services:
     ports:
       - "8081:80"
     networks:
-      - backend
-      - app
+      app:
+        ipv4_address: 10.5.0.4
 
 volumes:
   db:
 
 networks:
   app:
-  frontend:
-  backend:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
 
