@@ -2,7 +2,7 @@ Project established: 11-26-2023
 
 Creator: Jason McClurg
 
-Purpose: Web based mileage app 
+Purpose: Web based mileage tracking app 
 
 ### Network
 
