@@ -1,6 +1,7 @@
 <?php
 include_once './locations.php';
 include_once './_db.php';
+include_once './functions.php';
 ?>
 
 <html>
@@ -10,7 +11,15 @@ include_once './_db.php';
     <title>Mileage</title>
 </head>
     <body>
-        <p><?= var_dump($locations) ?></p>
+    <p>Index Page loaded. Today's date is <?php echo get_today(); ?>.</p>
+    <table>
+        <th>date</th>
+        <th>starting odometer</th>
+        <th>ending odometer</th>
+        <th>starting location</th>
+        <th>ending location</th>
+        <th>trip miles</th>
+    </table>
     </body>
 </html>
 
