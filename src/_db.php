@@ -1,10 +1,5 @@
 <?php
 
-//$conn = mysqli_connect($host, $user, $pass, $db,);
-//if (!$conn = mysqli_connect($host, $user, $pass, $db)) {
-    //die("Bad connect $host");
-//}
-
 $pdo;
 $host = "10.5.0.3";
 $db = $_ENV['MYSQL_DATABASE'];
