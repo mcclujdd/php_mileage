@@ -3,7 +3,6 @@
 $host = "10.5.0.3";
 $db = $_ENV['MYSQL_DATABASE'];
 $charset = 'utf8mb4';
-$dsn = "mysql:host=$host;port=3306;dbname=$db;charset=$charset";
 $user = "root";
 $pass = $_ENV['MYSQL_ROOT_PASSWORD']; 
 $options = [
@@ -12,4 +11,9 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
-$pdo = new PDO($dsn, $user, $pass);
+$dsn = "mysql:host=$host;dbname=$db;port=3306;charset=$charset";
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), $e->getCode());
+}
