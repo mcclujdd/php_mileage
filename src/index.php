@@ -1,7 +1,11 @@
 <?php
+require_once 'vendor/autoload.php';
+
+$temporal = new Mileage\Temporal();
+$today = $temporal->get_today();
+
 include_once './locations.php';
 include_once './_db.php';
-include_once './functions.php';
 ?>
 
 <html>
@@ -11,7 +15,7 @@ include_once './functions.php';
     <title>Mileage</title>
 </head>
     <body>
-    <p>Index Page loaded. Today's date is <?php echo get_today(); ?>.</p>
+    <p>Index Page loaded. Today's date is <?= $today ?>.</p>
     <table>
         <th>date</th>
         <th>starting odometer</th>
