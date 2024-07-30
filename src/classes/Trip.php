@@ -6,6 +6,7 @@ Class Trip {
     private $end_account = '';
     private $message = '';
     private $valid = '';
-    public $locations = ['Lawrence', 'Anna Jaques', 'Auburn', 'Lowell', 'Home Base',];
+    public $locSql = 'SELECT name FROM location';
+
 
 }
