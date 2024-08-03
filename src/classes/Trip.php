@@ -1,6 +1,11 @@
 <?php 
 namespace Mileage;
 
+/**
+ * Class Trip
+ *
+ * @package Mileage
+ */
 Class Trip {
     public $data;
     public $locSql = 'SELECT name FROM location';
@@ -20,3 +25,4 @@ Class Trip {
     //add trip function
 
 }
+?>

@@ -1,10 +1,14 @@
 <?php
 namespace Mileage;
+
 /**
+ *
+ * class User
+ *
  * @package Mileage
  *
  */
-class User1 
+class User 
 {
 	public function test1()
 	{
