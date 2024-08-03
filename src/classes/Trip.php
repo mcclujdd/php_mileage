@@ -8,5 +8,6 @@ Class Trip {
     private $valid = '';
     public $locSql = 'SELECT name FROM location';
 
+    //add trip function
 
 }

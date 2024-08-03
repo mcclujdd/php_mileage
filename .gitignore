@@ -2,3 +2,7 @@ roadmap.md
 .env
 info.php
 db.sql.bak
+
+vendor/
+
+*.cache*

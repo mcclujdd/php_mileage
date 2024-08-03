@@ -10,6 +10,7 @@ services:
     ports:
       - "8080:80"
     environment:
+      PATH: "$PATH:/var/www/html/vendor/bin"
       MYSQL_ROOT_PASSWORD: ${DB_PASS} #pass is in .env file
       MYSQL_DATABASE: 'db'
     volumes:

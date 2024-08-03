@@ -4,6 +4,10 @@ require_once 'vendor/autoload.php';
 $temporal = new Mileage\Temporal();
 $today = $temporal->get_today();
 
+$trip = new Mileage\Trip();
+$tSql = $trip->locSql;
+var_dump($tSql);
+
 include_once './_db.php';
 
 ?>
