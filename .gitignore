@@ -6,3 +6,6 @@ db.sql.bak
 vendor/
 
 *.cache*
+
+phpunit*
+composer.lock
