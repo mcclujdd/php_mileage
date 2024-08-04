@@ -13,7 +13,7 @@ $options = [
 
 $dsn = "mysql:host=$host;dbname=$db;port=3306;charset=$charset";
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $DBH = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), $e->getCode());
 }
