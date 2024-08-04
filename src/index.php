@@ -1,11 +1,45 @@
 <?php
 require_once 'vendor/autoload.php';
+include_once './_db.php';
+
+var_dump($_POST);   
 
 $temporal = new Mileage\Temporal();
 $today = $temporal->get_today();
+$values = [];
+$tData = [];
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $date = $_POST['tripDate'];
+    $loc1 = $_POST['startLoc'];
+    $loc2 = $_POST['endLoc'];
+    $odo1 = $_POST['startOdo'];
+    $odo2 = $_POST['endOdo'];
+    $miles = $_POST['tripMiles'];
 
-include_once './_db.php';
+    //$trip = new Mileage\Trip(...$tData);
+    $sql = "
+        INSERT INTO `trip` (
+            date,
+            location1,
+            location2,
+            odometer1,
+            odometer2,
+            trip_mi
+            )
+        VALUES (
+            '$date',
+            '$loc1',
+            '$loc2',
+            $odo1,
+            $odo2,
+            $miles
+            )       
+        ";
+} else {
+    $tData = [];
+}
+$DBH->query($sql);
 
 ?>
 
@@ -13,7 +47,7 @@ include_once './_db.php';
 <head>
     <meta charset ="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mileage</title>
+    <title>Mileage app</title>
 </head>
     <body>
     <p>Index Page loaded. Today's date is <?= $today ?>.</p>
