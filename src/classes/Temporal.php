@@ -8,7 +8,7 @@ namespace Mileage;
 class Temporal
 {
 	public function get_today(){
-	    $today = $today = date("Y-m-d");
+	    $today = date("Y-m-d");
 	    return $today;
 	}
 }

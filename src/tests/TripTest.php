@@ -3,6 +3,7 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Mileage\Trip;
 
+#[CoversClass(Trip::class)]
 class TripTest extends TestCase {
     // test things
 

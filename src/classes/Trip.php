@@ -8,7 +8,7 @@ namespace Mileage;
  */
 Class Trip {
     public $data;
-    public $locSql = 'SELECT name FROM location';
+    public $locSql = 'SELECT DISTINCT name FROM locations';
 
     public function __construct(string $date, string $loc1, string $loc2, int $odo1, int $odo2, int $miles = 0){
 	$this->data = [
