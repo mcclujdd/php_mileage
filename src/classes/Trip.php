@@ -7,22 +7,37 @@ namespace Mileage;
  * @package Mileage
  */
 Class Trip {
-    public $data;
+    public $DBH;
     public $locSql = 'SELECT DISTINCT name FROM locations';
 
-    public function __construct(string $date, string $loc1, string $loc2, int $odo1, int $odo2, int $miles = 0){
-	$this->data = [
-	    $date,
-	    $loc1,
-	    $loc2,
-	    $odo1,
-	    $odo2,
-	    $miles
-	];
+    public function __construct( $DBH ) {
+	$this->DBH = $DBH;
     }
 
 
     //add trip function
+    public function addTrip(array $newEntryData){
+	$DBH = $this->DBH;
+	$sql = "
+	    INSERT INTO `trips` (
+		date,
+		location1,
+		location2,
+		odometer1,
+		odometer2,
+		trip_mi
+		)
+	    VALUES (
+		'$newEntryData[0]',
+		'$newEntryData[1]',
+		'$newEntryData[2]',
+		$newEntryData[3],
+		$newEntryData[4],
+		$newEntryData[5]
+		)       
+	    ";
+	    $DBH->query($sql);
+    }
 
 }
 ?>
