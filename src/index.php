@@ -1,9 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
 include_once './_db.php';
-include_once 'includes/header.php';
-
-//var_dump($_POST);   
 
 $temporal = new Mileage\Temporal();
 $trip = new Mileage\Trip($DBH);
@@ -13,16 +10,25 @@ $tHeaders = ['Date', 'Location1', 'Location2', 'Odometer1', 'Odometer2', 'Trip M
 $tData = [];
 $newEntryData = [];
 $error = false;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $date = $_POST['tripDate'] ?? $today;
-    $loc1 = $_POST['startLoc'];
-    $loc2 = $_POST['endLoc'];
-    $odo1 = $_POST['startOdo'];
-    $odo2 = $_POST['endOdo'];
-    $miles = $odo2 - $odo1;
+    $loc1 = $_POST['startLoc'] ?? '';
+    $loc2 = $_POST['endLoc'] ?? '';
+    $odo1 = $_POST['startOdo'] ?? 0;
+    $odo2 = $_POST['endOdo'] ?? 0;
+    $miles = 0;
+    //validate odometer readings
+    if (!is_numeric($odo1) || !is_numeric($odo2)){
+        echo "<p style='color:red'>Odometer readings must be numbers</p>";
+        $error = true;
+    } else {
+        $miles = $odo2 - $odo1;
+    }
+
     $newEntryData = [$date, $loc1, $loc2, $odo1, $odo2, $miles];
     //escape data
-    array_walk($tData, function(&$value){
+    array_walk($newEntryData, function(&$value){
         $value = htmlspecialchars($value);
     });
     
@@ -37,9 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if (!$error){
         $trip->addTrip($newEntryData);
+        header('Location: index.php');
+        //header('Location: confirm.php');
     }
 }
-$tripData = $trip->getTrips();
+$tripData = $trip->getTrips(78);
 foreach ($tripData as $trip){
     $tData[] = $trip['date'];
     $tData[] = $trip['location1'];
@@ -49,6 +57,7 @@ foreach ($tripData as $trip){
     $tData[] = $trip['trip_mi'];
 }
 
+include_once 'includes/header.php';
 ?>
 
 <html>
