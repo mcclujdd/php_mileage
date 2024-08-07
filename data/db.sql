@@ -26,10 +26,10 @@ USE `db`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `location`
+-- Table structure for table `locations`
 --
 
-CREATE TABLE `location` (
+CREATE TABLE `locations` (
   `id` int UNSIGNED NOT NULL,
   `name` varchar(25) NOT NULL,
   `address` varchar(100) NOT NULL,
@@ -42,10 +42,10 @@ CREATE TABLE `location` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip`
+-- Table structure for table `trips`
 --
 
-CREATE TABLE `trip` (
+CREATE TABLE `trips` (
   `UID` int UNSIGNED NOT NULL,
   `date` date NOT NULL,
   `location1` varchar(20) NOT NULL,
@@ -59,10 +59,10 @@ CREATE TABLE `trip` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `UID` int UNSIGNED NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
@@ -79,21 +79,21 @@ CREATE TABLE `user` (
 --
 
 --
--- Indexes for table `location`
+-- Indexes for table `locations`
 --
-ALTER TABLE `location`
+ALTER TABLE `locations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trip`
+-- Indexes for table `trips`
 --
-ALTER TABLE `trip`
+ALTER TABLE `trips`
   ADD PRIMARY KEY (`UID`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`UID`);
 
 --
@@ -101,21 +101,21 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `location`
+-- AUTO_INCREMENT for table `locations`
 --
-ALTER TABLE `location`
+ALTER TABLE `locations`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `trip`
+-- AUTO_INCREMENT for table `trips`
 --
-ALTER TABLE `trip`
+ALTER TABLE `trips`
   MODIFY `UID` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   MODIFY `UID` int UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 

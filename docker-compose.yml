@@ -33,7 +33,7 @@ services:
     ports:
       - 3306
     volumes:
-      - db:/var/lib/mysql
+      - ./data/:/docker-entrypoint-initdb.d/
     networks:
       app:
         ipv4_address: 10.5.0.3
@@ -46,8 +46,10 @@ services:
     restart: always
     environment:
       PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ${DB_PASS}
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS} #pass is in .env file
     ports:
       - "8081:80"
     networks:
