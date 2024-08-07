@@ -39,10 +39,12 @@ Class Trip {
 	    $DBH->query($sql);
     }
 
-    public function getTrips(){
+    public function getTrips($limit = 20){
 	$DBH = $this->DBH;
 	$sql = "SELECT date, location1, location2, odometer1, odometer2, trip_mi
-	    FROM trips";
+	    FROM trips
+	    ORDER BY date DESC, odometer2 DESC
+	    LIMIT $limit";
 	$STH = $DBH->query($sql);
 	$STH->setFetchMode(\PDO::FETCH_ASSOC);
 	$trips = $STH->fetchAll();
