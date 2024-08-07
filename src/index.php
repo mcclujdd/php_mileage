@@ -6,6 +6,7 @@ include_once 'includes/header.php';
 //var_dump($_POST);   
 
 $temporal = new Mileage\Temporal();
+$trip = new Mileage\Trip($DBH);
 $today = $temporal->get_today();
 $values = [];
 $tHeaders = ['Date', 'Location1', 'Location2', 'Odometer1', 'Odometer2', 'Trip Miles'];
@@ -18,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $loc2 = $_POST['endLoc'];
     $odo1 = $_POST['startOdo'];
     $odo2 = $_POST['endOdo'];
-    $miles = $_POST['tripMiles'];
+    $miles = $odo2 - $odo1;
     $newEntryData = [$date, $loc1, $loc2, $odo1, $odo2, $miles];
     //escape data
     array_walk($tData, function(&$value){
@@ -35,10 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if (!$error){
-        $trip = new Mileage\Trip($DBH);
         $trip->addTrip($newEntryData);
     }
 }
+$tripData = $trip->getTrips();
+foreach ($tripData as $trip){
+    $tData[] = $trip['date'];
+    $tData[] = $trip['location1'];
+    $tData[] = $trip['location2'];
+    $tData[] = $trip['odometer1'];
+    $tData[] = $trip['odometer2'];
+    $tData[] = $trip['trip_mi'];
+}
+
 ?>
 
 <html>
@@ -60,19 +70,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <input type=text name="startLoc"></br>
         <label>End Loc</label>
         <input type=text name="endLoc"></br>
-        <label>Trip Miles</label>
-        <input type=text name="tripMiles"></br>
         <button type=submit>Submit</button>
     </form>
     <table>
-<tr>
-<?php foreach ($tHeaders as $h){ ?>
-    <th><?= $h ?></th>
-<?php } ?>
-</tr>
-<?php foreach ($tData as $d){ ?>
-    <td><?= $d ?></td>
-<?php } ?>  
+        <tr>
+            <?php foreach ($tHeaders as $h){ ?>
+                <th><?= $h ?></th>
+            <?php } ?>
+        </tr>
+        <?php foreach ($tripData as $trip){ ?>
+            <tr>
+            <?php foreach ($trip as $d){ ?>
+                <td><?= $d ?></td>
+            <?php } ?>  
+            </tr>
+        <?php } ?>
     </table>
 
 <?php include_once 'includes/footer.php'; ?>

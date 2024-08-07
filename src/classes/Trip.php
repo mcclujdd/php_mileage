@@ -39,5 +39,28 @@ Class Trip {
 	    $DBH->query($sql);
     }
 
+    public function getTrips(){
+	$DBH = $this->DBH;
+	$sql = "SELECT date, location1, location2, odometer1, odometer2, trip_mi
+	    FROM trips";
+	$STH = $DBH->query($sql);
+	$STH->setFetchMode(\PDO::FETCH_ASSOC);
+	$trips = $STH->fetchAll();
+	//escape data
+	array_walk($trips, function(&$trip){
+	    array_walk($trip, function(&$value){
+		$value = htmlspecialchars($value);
+	    });
+	});
+	return $trips;
+    }
+
+    public function getLocations(){
+	$DBH = $this->DBH;
+	$STH = $DBH->query($this->locSql);
+	$STH->setFetchMode(\PDO::FETCH_ASSOC);
+	$locations = $STH->fetchAll();
+	return $locations;
+    }
 }
 ?>
