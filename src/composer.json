@@ -1,14 +1,11 @@
 {
-	"require": 
-	{
+	"require": {
 		"monolog/monolog": "^3.0"
 	},
-	"autoload": 
-	{
+	"autoload": {
 		"psr-4":{
 			"Mileage\\": "classes/",
 			"Tests\\": "tests/"
 		}
-		
 	}
 }
