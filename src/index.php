@@ -68,18 +68,19 @@ include_once 'includes/header.php';
 </head>
     <body>
     <p>Today's date is <?= $today ?>.</p>
-    <span>New Entry</span>
+    <h3>New Entry</h3>
     <form method=post action=index.php>
-        <label>Date</label>
-        <input type=text name="tripDate" value=<?=$today?>></br>
-        Start Odo:<input type=text name="startOdo"></br>
-        <label>End Odo</label>
-        <input type=text name="endOdo"></br>
-        <label>Start Loc</label>
-        <input type=text name="startLoc"></br>
-        <label>End Loc</label>
-        <input type=text name="endLoc"></br>
-        <button type=submit>Submit</button>
+        <label>Date: </label>
+            <input type=text name="tripDate" id="datepicker"></br>
+        <label>Start Odo:</label>
+            <input type=text name="startOdo"></br>
+        <label>End Odo:</label>
+            <input type=text name="endOdo"></br>
+        <label>Start Loc:</label>
+            <input type=text name="startLoc"></br>
+        <label>End Loc:</label>
+            <input type=text name="endLoc"></br>
+        <button type=submit style="margin: 10px; padding: 5px;">Submit</button>
     </form>
     <table>
         <tr>
